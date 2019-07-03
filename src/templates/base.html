@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+    <style>
+        {% block style %}
+
+        {% endblock %}
+    </style>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Material Design for Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://kit.fontawesome.com/cee3414a35.js"></script>
+</head>
+<body class="fixed-sn mdb-skin">
+<header>
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+        <ul class="nav navbar-nav nav-flex-icons ml-auto">
+
+            <li class="nav-item">
+
+                {% if request.session.items_total %}
+                        <!--  url 'view_cart_url'  -->
+                    <a href="" class="nav-link"><span class="badge badge-danger ml-2">{{ request.session.items_total }}</span><i
+                            class="fas fa-shopping-cart"></i> <span
+                            class="clearfix d-none d-sm-inline-block">Cart</span></a>
+                {% else %}
+                        <!--  url 'view_cart_url'  -->
+                        <a href="" class="nav-link" data-toggle="modal" data-target="#basicExampleModal"><span class="badge badge-danger ml-2"></span><i
+                            class="fas fa-shopping-cart"></i> <span
+                                class="clearfix d-none d-sm-inline-block">Cart</span></a>
+                {% endif %}
+            </li>
+
+            <!-- Modal -->
+
+            {% if request.user.is_authenticated %}
+<li>
+<p>Hi {{ request.user.username }}!</p>
+</li>
+            <li class="nav-item">
+                <a class="nav-link"><i class="fas fa-user"></i> <span
+                        class="clearfix d-none d-sm-inline-block">Account</span></a>
+            </li>
+                {% else %}
+
+                    <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#modalLoginForm"><i class="fas fa-user"></i> <span
+                        class="clearfix d-none d-sm-inline-block">Log in</span></a>
+            </li>
+
+
+                <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#modalRegisterForm"><i class="fas fa-user"></i> <span
+                        class="clearfix d-none d-sm-inline-block">Register</span></a>
+            </li>
+
+            {% endif %}
+
+
+        </ul>
+    </nav>
+</header>
+
+<div align="center">
+    <a href="http://127.0.0.1:8000">
+        <img src="../media/roly.jpg" alt="">
+    </a>
+</div>
+
+{% block content %}
+
+{% endblock %}
+
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <h3>Your Cart is Empty, please keep shopping!</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            <!--   -->
+          <a href="{% url 'to_home_url' %}"><button type="button" class="btn btn-primary">select category</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small unique-color-dark pt-4">
+
+    <!-- Footer Elements -->
+    <div class="container">
+
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <h5 class="mb-1">Register for free</h5>
+            </li>
+            <li class="list-inline-item">
+                <!--Modal Register Form -->
+                <a class="btn btn-outline-white btn-rounded"
+                data-toggle="modal" data-target="#modalRegisterForm">Sign up!</a>
+
+            </li>
+        </ul>
+        <!-- Call to action -->
+    </div>
+    <!-- Footer Elements -->
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2019 Copyright <br>
+        <a href="https://mdbootstrap.com/education/bootstrap/">Harry'sRolyPoly</a>
+    </div>
+</footer>
+<!-- Footer -->
+
+
+<!--Modal Login -->
+
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="defaultForm-email" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="defaultForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-default">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--End Modal Login -->
+
+<!-- Modal Register -->
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+
+          <!-- Register url -->
+          <form method="post" action="">
+                {% csrf_token %}
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <input type="text" id="orangeForm-name" class="form-control validate" name="first_name">
+          <label data-error="wrong" data-success="right" for="orangeForm-name">Your first name</label>
+        </div>
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <input type="text" id="orangeForm-name" class="form-control validate" name="last_name">
+          <label data-error="wrong" data-success="right" for="orangeForm-name">Your last name</label>
+        </div>
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="orangeForm-email" class="form-control validate" name="email">
+          <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="tel" id="orangeForm-tel" class="form-control validate" name="phone" pattern="^(\+375|80)(29|25|44|33)(\d{3})(\d{2})(\d{2})$">
+          <label data-error="wrong" data-success="right" for="orangeForm-tel">Your phone</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="orangeForm-pass" class="form-control validate" name="password">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+              <button type="submit" class="btn btn-deep-orange">Sign up</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End Modal Register -->
+
+
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<!-- Material Design for Bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/js/mdb.min.js"></script>
+
+<script>
+    new WOW().init();
+</script>
+
+</body>
+</html>

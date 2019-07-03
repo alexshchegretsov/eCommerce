@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def to_home(request): pass
+def sign_up(request): pass
