@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Category, Product
-
+from carts.models import Cart
 
 def to_home_view(request):
     categorys = Category.objects.all()

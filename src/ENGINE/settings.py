@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'accounts.apps.AccountsConfig',
     'shop.apps.ShopConfig',
+    'carts.apps.CartsConfig',
 ]
 
 MIDDLEWARE = [
