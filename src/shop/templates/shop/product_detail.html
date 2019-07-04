@@ -1,0 +1,47 @@
+{% extends 'shop/base_shop.html' %}
+
+{% block title %}
+    Detail
+{% endblock %}
+
+{% block content %}
+
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{ product.picture.url }}" class="card-img" alt="{{ product.title }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title">{{ product.title }}</h2>
+                    <div>
+                        <p class="card-text" style="font-size: x-large">{{ product.description }}</p>
+                    </div>
+                    <div>
+                        <p class="card-text" style="font-size: x-large"><b>Price: ${{ product.price }}</b></p><br>
+                    </div>
+                    <div>
+                        {% if not product in cart.products.all %}
+
+
+                            <a href="{% url 'update_cart_url' product.id %}">
+                                <button type="button"
+                                        class="btn btn-primary btn-lg btn-block">Add to Cart
+                                </button>
+                            </a>
+                        {% else %}
+
+                            <a href="{% url 'update_cart_url' product.id %}">
+                                <button type="button"
+                                        class="btn btn-primary btn-lg btn-block">Remove from Cart
+                                </button>
+                            </a>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

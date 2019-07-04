@@ -8,7 +8,7 @@ class Product(models.Model):
                                 validators=[validate_file_size],
                                 blank=True)
     title = models.CharField(max_length=48)
-    description = models.TextField(max_length=300, blank=True)
+    description = models.TextField(max_length=500, blank=True)
     price = models.DecimalField(max_digits=100, decimal_places=2, default=0.00)
     amount = models.IntegerField(default=1)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)

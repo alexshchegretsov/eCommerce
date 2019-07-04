@@ -15,19 +15,18 @@ def show_category(request, category_id):
 
 
 def product_detail(request, product_id):
-    pass
-    # print(request.user)
-    # print(request.COOKIES)
-    # print(request.session.__dict__)
-    #
-    # try:
-    #     the_id = request.session['cart_id']
-    # except:
-    #     new_cart = Cart()
-    #     new_cart.save()
-    #     request.session['cart_id'] = new_cart.id
-    #     the_id = new_cart.id
-    # cart = Cart.objects.get(id=the_id)
-    # product = Product.objects.get(id=product_id)
-    # context = {'product': product,'cart': cart}
-    # return render(request, 'sweeet/product_detail.html', context)
+    print(request.user)
+    print(request.COOKIES)
+    print(request.session.__dict__)
+
+    try:
+        the_id = request.session['cart_id']
+    except:
+        new_cart = Cart()
+        new_cart.save()
+        request.session['cart_id'] = new_cart.id
+        the_id = new_cart.id
+    cart = Cart.objects.get(id=the_id)
+    product = Product.objects.get(id=product_id)
+    context = {'product': product,'cart': cart}
+    return render(request, 'shop/product_detail.html', context)

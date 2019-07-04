@@ -55,6 +55,12 @@
                 <a class="nav-link"><i class="fas fa-user"></i> <span
                         class="clearfix d-none d-sm-inline-block">Account</span></a>
             </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout_url' %}"><i class="fas fa-sign-out-alt"></i>
+                    <span class="clearfix d-none d-sm-inline-block">Log out</span>
+                    </a>
+                </li>
                 {% else %}
 
                     <li class="nav-item">
@@ -78,7 +84,7 @@
 
 <div align="center">
     <a href="{% url 'to_home_url' %}">
-        <img src="../media/roly.jpg" alt="">
+        <img src="/../media/roly.jpg" alt="">
     </a>
 </div>
 

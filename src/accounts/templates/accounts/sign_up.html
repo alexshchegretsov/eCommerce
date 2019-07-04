@@ -8,7 +8,7 @@
 
     <!-- Material form register -->
     <div align="center">
-        <div class="card" style="width: 500px">
+        <div class="card" style="width: 400px">
 
             <h5 class="card-header info-color white-text text-center py-4">
                 <strong>Sign up</strong>
@@ -23,36 +23,42 @@
 
                     <!-- First name -->
                     <div class="md-form">
+                        <i class="fas fa-user prefix grey-text"></i>
                         {{ form.first_name }}
-                        <label for="first_name">First</label>
+{#                        <label for="first_name">First</label>#}
                     </div>
 
                     <!-- Last name -->
                     <div class="md-form">
+                        <i class="fas fa-user-plus prefix grey-text"></i>
                         {{ form.last_name }}<br>
-                        <label for="last_name">Last</label>
+{#                        <label for="last_name">Last</label>#}
                     </div>
 
                     <!-- E-mail -->
                     <div class="md-form">
+                        <i class="fas fa-envelope prefix grey-text"></i>
                         {{ form.email }}<br>
-                        <label for="email">E-mail</label>
+{#                        <label for="email">E-mail</label>#}
                     </div>
 
                     <div class="md-form">
+                        <i class="fas fa-phone-square prefix grey-text"></i>
                         {{ form.phone }}<br>
-                        <label for="phone">Phone</label>
+{#                        <label for="phone">Phone</label>#}
                     </div>
 
                     <!-- Password -->
                     <div class="md-form">
+                        <i class="fas fa-unlock prefix grey-text"></i>
                         {{ form.password1 }}<br>
-                        <label for="password1">Password</label>
+{#                        <label for="password1">Password</label>#}
                     </div>
 
                     <div class="md-form">
+                        <i class="fas fa-check prefix grey-text"></i>
                         {{ form.password2 }}<br>
-                        <label for="password2">Confirm</label>
+{#                        <label for="password2">Confirm</label>#}
                     </div>
 
                     <!-- Sign up button -->
