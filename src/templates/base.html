@@ -26,6 +26,11 @@
 <header>
     <!-- Navbar -->
     <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+        {% if user.is_authenticated %}
+            <div>
+                <p style="font-family: 'Noto Sans CJK JP Bold'">Hello, {{ user.first_name.title }}</p>
+            </div>
+        {% endif %}
         <ul class="nav navbar-nav nav-flex-icons ml-auto">
 
             <li class="nav-item">
@@ -44,11 +49,8 @@
             </li>
 
             <!-- Modal -->
-
             {% if request.user.is_authenticated %}
-<li>
-<p>Hi {{ request.user.username }}!</p>
-</li>
+
             <li class="nav-item">
                 <a class="nav-link"><i class="fas fa-user"></i> <span
                         class="clearfix d-none d-sm-inline-block">Account</span></a>
@@ -62,7 +64,7 @@
 
 
                 <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#modalRegisterForm"><i class="fas fa-user"></i> <span
+                <a class="nav-link" href="{% url 'sign_up_url' %}"><i class="fas fa-user"></i> <span
                         class="clearfix d-none d-sm-inline-block">Register</span></a>
             </li>
 
@@ -70,11 +72,12 @@
 
 
         </ul>
+
     </nav>
 </header>
 
 <div align="center">
-    <a href="http://127.0.0.1:8000">
+    <a href="{% url 'to_home_url' %}">
         <img src="../media/roly.jpg" alt="">
     </a>
 </div>
@@ -105,8 +108,11 @@
 <!-- Footer -->
 <footer class="page-footer font-small unique-color-dark pt-4">
 
-    <!-- Footer Elements -->
+
+{% if not user.is_authenticated %}
     <div class="container">
+
+
 
         <!-- Call to action -->
         <ul class="list-unstyled list-inline text-center py-2">
@@ -114,17 +120,16 @@
                 <h5 class="mb-1">Register for free</h5>
             </li>
             <li class="list-inline-item">
-                <!--Modal Register Form -->
                 <a class="btn btn-outline-white btn-rounded"
-                data-toggle="modal" data-target="#modalRegisterForm">Sign up!</a>
-
+                href="{% url 'sign_up_url' %}">Sign up!</a>
             </li>
         </ul>
-        <!-- Call to action -->
     </div>
+
+    {% endif %}
     <!-- Footer Elements -->
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2019 Copyright <br>
+    <div class="footer-copyright text-center py-3">© 2019 Copyright<br>
         <a href="https://mdbootstrap.com/education/bootstrap/">Harry'sRolyPoly</a>
     </div>
 </footer>

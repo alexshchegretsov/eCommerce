@@ -1,0 +1,74 @@
+{% extends 'accounts/base_accounts.html' %}
+
+{% block title %}
+    Sign up
+{% endblock %}
+
+{% block content %}
+
+    <!-- Material form register -->
+    <div align="center">
+        <div class="card" style="width: 500px">
+
+            <h5 class="card-header info-color white-text text-center py-4">
+                <strong>Sign up</strong>
+            </h5>
+
+            <!--Card content-->
+            <div class="card-body px-lg-5 pt-0">
+
+                <!-- Form -->
+                <form class="text-center" style="color: #757575;" method="post" action="{% url 'sign_up_url' %}">
+                    {% csrf_token %}
+
+                    <!-- First name -->
+                    <div class="md-form">
+                        {{ form.first_name }}
+                        <label for="first_name">First</label>
+                    </div>
+
+                    <!-- Last name -->
+                    <div class="md-form">
+                        {{ form.last_name }}<br>
+                        <label for="last_name">Last</label>
+                    </div>
+
+                    <!-- E-mail -->
+                    <div class="md-form">
+                        {{ form.email }}<br>
+                        <label for="email">E-mail</label>
+                    </div>
+
+                    <div class="md-form">
+                        {{ form.phone }}<br>
+                        <label for="phone">Phone</label>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="md-form">
+                        {{ form.password1 }}<br>
+                        <label for="password1">Password</label>
+                    </div>
+
+                    <div class="md-form">
+                        {{ form.password2 }}<br>
+                        <label for="password2">Confirm</label>
+                    </div>
+
+                    <!-- Sign up button -->
+
+                    <input class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit"
+                           value="Sign in">
+
+                    <hr>
+
+
+                </form>
+                <!-- Form -->
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Material form register -->
+{% endblock %}
