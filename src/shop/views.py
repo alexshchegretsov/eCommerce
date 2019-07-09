@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Category, Product
 from carts.models import Cart
 
+
 def to_home_view(request):
     categorys = Category.objects.all()
     context = {'categorys': categorys}
@@ -15,10 +16,6 @@ def show_category(request, category_id):
 
 
 def product_detail(request, product_id):
-    print(request.user)
-    print(request.COOKIES)
-    print(request.session.__dict__)
-
     try:
         the_id = request.session['cart_id']
     except:
@@ -28,5 +25,5 @@ def product_detail(request, product_id):
         the_id = new_cart.id
     cart = Cart.objects.get(id=the_id)
     product = Product.objects.get(id=product_id)
-    context = {'product': product,'cart': cart}
+    context = {'product': product, 'cart': cart}
     return render(request, 'shop/product_detail.html', context)

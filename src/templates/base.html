@@ -37,12 +37,12 @@
 
                 {% if request.session.items_total %}
                         <!--  url 'view_cart_url'  -->
-                    <a href="" class="nav-link"><span class="badge badge-danger ml-2">{{ request.session.items_total }}</span><i
+                    <a href="{% url 'view_cart_url' %}" class="nav-link"><span class="badge badge-danger ml-2">{{ request.session.items_total }}</span><i
                             class="fas fa-shopping-cart"></i> <span
                             class="clearfix d-none d-sm-inline-block">Cart</span></a>
                 {% else %}
                         <!--  url 'view_cart_url'  -->
-                        <a href="" class="nav-link" data-toggle="modal" data-target="#basicExampleModal"><span class="badge badge-danger ml-2"></span><i
+                        <a href="{% url 'view_cart_url' %}" class="nav-link" data-toggle="modal" data-target="#basicExampleModal"><span class="badge badge-danger ml-2"></span><i
                             class="fas fa-shopping-cart"></i> <span
                                 class="clearfix d-none d-sm-inline-block">Cart</span></a>
                 {% endif %}

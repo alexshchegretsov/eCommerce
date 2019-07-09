@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from .models import Cart
+from .models import CartItem
+from .forms import OrderForm
 from shop.models import Product
+
 
 
 def view_cart(request):
@@ -13,7 +17,8 @@ def view_cart(request):
         the_id = new_cart.id
 
     cart = Cart.objects.get(id=the_id)
-    context = {'cart': cart}
+    form = OrderForm()
+    context = {'cart': cart, 'form': form}
 
     return render(request, 'carts/view_cart.html', context)
 
@@ -31,40 +36,43 @@ def update_cart(request, product_id):
         the_id = new_cart.id
     cart = get_object_or_404(Cart, id=the_id)
     product = get_object_or_404(Product, id=product_id)
+    product.amount = 1
+    product.save()
+    cart_item, created = CartItem.objects.get_or_create(product=product)
 
-    if not product in cart.products.all():
-        cart.products.add(product)
+    if not cart_item in cart.items.all():
+        cart_item.amount = 1
+        cart_item.save()
+        cart.items.add(cart_item)
     else:
-        cart.products.remove(product)
-        product.amount = 1
-        product.save()
+        cart.items.remove(cart_item)
 
     new_total = 0.00
-    for item in cart.products.all():
-        new_total += float(item.get_total)
-    request.session['items_total'] = cart.products.count()
+    for item in cart.items.all():
+        new_total += float(item.product.get_total)
+    request.session['items_total'] = cart.items.count()
     cart.total = new_total
     cart.save()
     return redirect('view_cart_url')
 
 
-def increase_amount(request, product_id):
+def increase_amount(request, cart_item_id):
     cart = get_object_or_404(Cart, id=request.session['cart_id'])
-    product = get_object_or_404(Product, id=product_id)
-    product.amount += 1
-    product.save()
-    cart.total += product.price
+    cart_item = CartItem.objects.get(id=cart_item_id)
+    cart_item.amount += 1
+    cart_item.save()
+    cart.total += cart_item.product.price
     cart.save()
     return redirect('view_cart_url')
 
 
-def decrease_amount(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    if product.amount == 1:
+def decrease_amount(request, cart_item_id):
+    cart_item = CartItem.objects.get(id=cart_item_id)
+    if cart_item.amount == 1:
         return redirect('view_cart_url')
-    product.amount -= 1
-    product.save()
+    cart_item.amount -= 1
+    cart_item.save()
     cart = get_object_or_404(Cart, id=request.session['cart_id'])
-    cart.total -= product.price
+    cart.total -= cart_item.product.price
     cart.save()
     return redirect('view_cart_url')
