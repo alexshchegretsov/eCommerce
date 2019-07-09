@@ -46,23 +46,4 @@
 
 </div>
 
-    <div align="center">
-    <form action="" method="post">
-
-        {% csrf_token %}
-        {{ cart.items.all }}
-
-        <input type="submit" value="Order">
-    </form>
-    </div>
-
-{#    <div align="center">#}
-{#    <form action="" method="post">#}
-{#        {% csrf_token %}#}
-{#        {{ form.as_p }}#}
-{#        <button class="btn btn-primary">Confirm order</button>#}
-{#    </form>#}
-{#</div>#}
-
-
 {% endblock %}

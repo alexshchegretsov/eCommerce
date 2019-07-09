@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .models import Cart
 from .models import CartItem
-from .forms import OrderForm
 from shop.models import Product
 
 
@@ -17,8 +16,7 @@ def view_cart(request):
         the_id = new_cart.id
 
     cart = Cart.objects.get(id=the_id)
-    form = OrderForm()
-    context = {'cart': cart, 'form': form}
+    context = {'cart': cart}
 
     return render(request, 'carts/view_cart.html', context)
 
