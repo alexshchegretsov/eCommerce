@@ -46,4 +46,147 @@
 
 </div>
 
+<div align="center">
+
+    {% if user.is_authenticated %}
+    <div class="card">
+
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Order Info</strong>
+    </h5>
+
+    <!--Card content-->
+    <div class="card-body px-lg-5 pt-0">
+
+        <!-- Form -->
+        <form class="text-center" style="color: #757575;" method="post" action="{% url 'confirm_order_url' %}">
+            {% csrf_token %}
+
+            <div class="md-form">
+                <label for="time">Delivery time</label>
+                <select name="delivery_time" id="time" class="form-control" required>
+                    <option value=""></option>
+                    <option value="9:00 - 10:00">9:00 - 10:00</option>
+                    <option value="10:00 - 11:00">10:00 - 11:00</option>
+                    <option value="11:00 - 12:00">11:00 - 12:00</option>
+                    <option value="12:00 - 13:00">12:00 - 13:00</option>
+                    <option value="13:00 - 14:00">13:00 - 14:00</option>
+                    <option value="14:00 - 15:00">14:00 - 15:00</option>
+                    <option value="15:00 - 16:00">15:00 - 16:00</option>
+                    <option value="16:00 - 17:00">16:00 - 17:00</option>
+                    <option value="17:00 - 18:00">17:00 - 18:00</option>
+                    <option value="18:00 - 19:00">18:00 - 19:00</option>
+                    <option value="19:00 - 20:00">19:00 - 20:00</option>
+                    <option value="20:00 - 21:00">20:00 - 21:00</option>
+                    <option value="21:00 - 22:00">21:00 - 22:00</option>
+                </select>
+
+            </div>
+
+            <div class="md-form">
+                <input type="text" id="text_1" name="delivery_address" class="form-control">
+                <label for="text_1">Delivery address</label>
+            </div>
+
+
+            <div class="md-form">
+                <textarea name="comment" id="ta" cols="30" rows="5" class="form-control"></textarea>
+                <label for="ta">Write your comment</label>
+            </div>
+            <input class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" value="Confirm order">
+
+        </form>
+
+    </div>
+
+</div>
+        {% else %}
+
+        <div class="card">
+
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Order Info</strong>
+    </h5>
+
+    <!--Card content-->
+    <div class="card-body px-lg-5 pt-0">
+
+        <!-- Form -->
+        <form class="text-center" style="color: #757575;" method="post" action="{% url 'confirm_order_url' %}">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col">
+                    <!-- First name -->
+                    <div class="md-form">
+                        <input type="text" id="materialRegisterFormFirstName" name="first_name" class="form-control" required>
+                        <label for="materialRegisterFormFirstName">First name</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- Last name -->
+                    <div class="md-form">
+                        <input type="text" id="materialRegisterFormLastName" name="last_name" class="form-control" required>
+                        <label for="materialRegisterFormLastName">Last name</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-mail -->
+            <div class="md-form mt-0">
+                <input type="email" id="materialRegisterFormEmail" name="email" class="form-control" required>
+                <label for="materialRegisterFormEmail">E-mail</label>
+            </div>
+
+            <div class="md-form">
+                <label for="time">Delivery time</label>
+                <select name="delivery_time" id="time" class="form-control" required>
+                    <option value=""></option>
+                    <option value="9:00 - 10:00">9:00 - 10:00</option>
+                    <option value="10:00 - 11:00">10:00 - 11:00</option>
+                    <option value="11:00 - 12:00">11:00 - 12:00</option>
+                    <option value="12:00 - 13:00">12:00 - 13:00</option>
+                    <option value="13:00 - 14:00">13:00 - 14:00</option>
+                    <option value="14:00 - 15:00">14:00 - 15:00</option>
+                    <option value="15:00 - 16:00">15:00 - 16:00</option>
+                    <option value="16:00 - 17:00">16:00 - 17:00</option>
+                    <option value="17:00 - 18:00">17:00 - 18:00</option>
+                    <option value="18:00 - 19:00">18:00 - 19:00</option>
+                    <option value="19:00 - 20:00">19:00 - 20:00</option>
+                    <option value="20:00 - 21:00">20:00 - 21:00</option>
+                    <option value="21:00 - 22:00">21:00 - 22:00</option>
+                </select>
+
+            </div>
+
+            <div class="md-form">
+                <input type="text" id="text_1" class="form-control" required name="delivery_address">
+                <label for="text_1">Delivery address</label>
+            </div>
+
+            <!-- Phone number -->
+            <div class="md-form">
+                <input type="text" name="phone" id="materialRegisterFormPhone" class="form-control" required aria-describedby="materialRegisterFormPhoneHelpBlock"
+                pattern="^(\+375|80)(29|25|44|33)(\d{3})(\d{2})(\d{2})$" placeholder="(+375|80)(29|25|44|33)1112233">
+                <label for="materialRegisterFormPhone">Phone number</label>
+                <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+
+                </small>
+            </div>
+
+
+            <div class="md-form">
+                <textarea name="comment" id="ta" cols="30" rows="5" class="form-control"></textarea>
+                <label for="ta">Write your comment</label>
+            </div>
+            <input class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" value="Confirm order">
+
+        </form>
+
+    </div>
+
+</div>
+    {% endif %}
+</div>
+
+
 {% endblock %}

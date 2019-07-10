@@ -14,7 +14,6 @@ def view_cart(request):
         new_cart.save()
         request.session['cart_id'] = new_cart.id
         the_id = new_cart.id
-
     cart = Cart.objects.get(id=the_id)
     context = {'cart': cart}
 
@@ -47,8 +46,10 @@ def update_cart(request, product_id):
 
     new_total = 0.00
     for item in cart.items.all():
-        new_total += float(item.product.get_total)
+        new_total += float(item.get_full_price())
     request.session['items_total'] = cart.items.count()
+    if not request.session['items_total']:
+        return redirect('to_home_url')
     cart.total = new_total
     cart.save()
     return redirect('view_cart_url')

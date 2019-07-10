@@ -15,7 +15,6 @@ class CartItem(models.Model):
 
 class Cart(models.Model):
     items = models.ManyToManyField(CartItem, null=True, blank=True)
-    products = models.ManyToManyField(Product, blank=True)
     total = models.DecimalField(max_digits=100, decimal_places=2, default=0.00)
 
     def __str__(self):
