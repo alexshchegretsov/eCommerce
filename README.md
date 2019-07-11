@@ -4,8 +4,8 @@
 <h2>Getting started</h2>
 <p>Clone the source locally:</p>
 <pre> 
-      $ git clone https://github.com/alexshchegretsov/TODO_manager.git
-      $ cd TODO_manager
+      $ git clone https://github.com/alexshchegretsov/eCommerce.git
+      $ cd eCommerce
 </pre>
 <p>Update package list and install pip for Python 3:</p>
 <pre>
@@ -16,7 +16,7 @@
 <pre>
       $ pip3 --version
 </pre>
-<p>You are still at /TODO_manager/ directory, create and run virtual environment:</p>
+<p>You are still at /eCommerce/ directory, create and run virtual environment:</p>
 <pre>
       $ virtualenv -p python3.7 .venv
       $ source .venv/bin/activate
