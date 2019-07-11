@@ -7,6 +7,7 @@ from shop.models import Product
 
 def update_cart(request, product_id):
     request.session.set_expiry(120000)
+    print(request.session.__dict__)
     try:
         the_id = request.session['cart_id']
     except:

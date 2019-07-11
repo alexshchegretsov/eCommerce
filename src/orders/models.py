@@ -18,7 +18,7 @@ class OrderItem(models.Model):
     amount = models.IntegerField(default=1)
 
     def __str__(self):
-        return f'{self.product.title} - {self.amount}'
+        return f'{self.product.title}'
 
 
 class Order(models.Model):

@@ -1,0 +1,31 @@
+{% extends 'orders/base_orders.html' %}
+
+{% block title %}
+Order Created
+{% endblock %}
+
+{% block content %}
+
+    <h1 align="center">Order succesfully created!</h1><br>
+    <hr>
+
+
+    <div align="center">
+
+    <table>
+        <tr><td>Order id: {{ order.order_id }}</td></tr>
+        <tr><td>Delivery address: {{ order.delivery_address }}</td></tr>
+        <tr><td>Delibery time: {{ order.delivery_time }}</td></tr>
+        <tr><td>Comment: {{ order.comment.title }}</td></tr>
+        {% for foo in order.order_items.all %}
+            <tr><td>Product: {{ foo }}</td><td>Amount: {{ foo.amount }}</td></tr>
+
+        {% endfor %}
+        <tr><td>Total: ${{ order.total }}</td></tr>
+
+    </table>
+    <h3 align="center"><a href="{% url 'to_home_url' %}">To category</a></h3>
+
+
+    </div>
+{% endblock %}

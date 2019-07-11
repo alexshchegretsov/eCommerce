@@ -1,4 +1,5 @@
 from django.shortcuts import redirect
+from django.shortcuts import render
 from carts.models import Cart
 from orders.models import Order
 from orders.models import OrderItem
@@ -50,6 +51,7 @@ def confirm_order(request):
             current_order_item.save()
             order.order_items.add(current_order_item)
         cart.items.clear()
-        request.session['items_total'] = cart.items.count()
-        return redirect('to_home_url')
+        del request.session['cart_id']
+        request.session['items_total'] = 0
+        return render(request, 'orders/successfully_created.html', context={'order': order})
     return redirect('to_home_url')
