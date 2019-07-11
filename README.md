@@ -35,3 +35,10 @@
 <pre>
       http://127.0.0.1:8000/
 </pre>
+<h2>Built with</h2>
+<ul>
+  <li><a href="https://www.djangoproject.com/">Django</a> - The web framework used</li>
+  <li><a href="https://mdbootstrap.com/">MDBootstrap</a> - Material Design for Bootstrap</li>
+</ul>
+<h2>License</h2>
+<p>MIT &copy; <a href="https://github.com/alexshchegretsov">Alex Shchegretsov</a></p>
