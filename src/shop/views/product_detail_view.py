@@ -1,18 +1,6 @@
 from django.shortcuts import render
-from .models import Category, Product
 from carts.models import Cart
-
-
-def to_home_view(request):
-    categorys = Category.objects.all()
-    context = {'categorys': categorys}
-    return render(request, 'shop/to_home.html', context)
-
-
-def show_category(request, category_id):
-    products = Product.objects.filter(category__id=category_id)
-    context = {'products': products, 'category': Category.objects.get(id=category_id)}
-    return render(request, 'shop/show_category.html', context)
+from shop.models import Product
 
 
 def product_detail(request, product_id):

@@ -45,10 +45,10 @@
 
 
 </div>
+{% if request.session.is_work_time and user.is_authenticated %}
 
 <div align="center">
 
-    {% if user.is_authenticated %}
     <div class="card">
 
     <h5 class="card-header info-color white-text text-center py-4">
@@ -100,7 +100,7 @@
     </div>
 
 </div>
-        {% else %}
+                {% elif request.session.is_work_time and not user.is_authenticated %}
 
         <div class="card">
 
@@ -185,8 +185,15 @@
     </div>
 
 </div>
-    {% endif %}
 </div>
+
+    {% else %}
+
+    <div align="center">
+        <h1>Sorry we're closed until 8 AM</h1>
+    </div>
+
+    {% endif %}
 
 
 {% endblock %}

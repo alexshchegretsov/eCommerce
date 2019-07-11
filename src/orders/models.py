@@ -21,7 +21,6 @@ class OrderItem(models.Model):
         return f'{self.product.title} - {self.amount}'
 
 
-
 class Order(models.Model):
     order_items = models.ManyToManyField(OrderItem)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
@@ -34,6 +33,7 @@ class Order(models.Model):
     order_id = models.CharField(max_length=120, default='SMTHN', unique=True)
     comment = models.TextField(max_length=300, blank=True)
     status = models.CharField(max_length=120, choices=STATUS_CHOICES, default='Started')
+    total = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.order_id
+        return f'Order {self.order_id}'

@@ -10,7 +10,7 @@ class CartItem(models.Model):
         return self.product.price * self.amount
 
     def __str__(self):
-        return f'{self.product.title} - {self.amount} '
+        return f'{self.product.title}'
 
 
 class Cart(models.Model):

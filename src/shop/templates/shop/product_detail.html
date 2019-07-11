@@ -21,7 +21,7 @@
                         <p class="card-text" style="font-size: x-large"><b>Price: ${{ product.price }}</b></p><br>
                     </div>
                     <div>
-                        {% if not product in cart.products.all %}
+                        {% if not product in cart.items.all %}
 
                             <a href="{% url 'update_cart_url' product.id %}">
                                 <button type="button"
