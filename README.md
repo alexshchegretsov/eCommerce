@@ -35,7 +35,7 @@
 <pre>
       http://127.0.0.1:8000/
 </pre>
-<p>Add category and products images from MEDIA directory</p>
+<p><b>Add category and products images from MEDIA directory</b></p>
 <h2>Built with</h2>
 <ul>
   <li><a href="https://www.djangoproject.com/">Django</a> - The web framework used</li>
