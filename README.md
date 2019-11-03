@@ -7,33 +7,25 @@
       $ git clone https://github.com/alexshchegretsov/eCommerce.git
       $ cd eCommerce
 </pre>
-<p>Update package list and install pip for Python 3:</p>
+
+<p>Run containers with "docker-compose" tool:</p>
 <pre>
-      $ sudo apt update
-      $ sudo apt install python3-pip
+      $ docker-compose up -d
 </pre>
-<p>Once the installation is complete, verify the installation by checking the pip version:</p>
+<p>Initialize postgres and collect staticfiles:</p>
 <pre>
-      $ pip3 --version
+      $ docker-compose run --rm web ./manage.py migrate
+      $ docker-compose run --rm web ./manage.py collectstatic    (type "yes")
 </pre>
-<p>You are still at /eCommerce/ directory, create and run virtual environment:</p>
+
+<p>Create site administrator:</p>
 <pre>
-      $ virtualenv -p python3.7 .venv
-      $ source .venv/bin/activate
+      $ docker-compose run --rm web ./manage.py createsuperuser
 </pre>
-<h4>Install all dependencies from requirements.txt:</h4>
+
+<p>Open your browser in a new window, go to admin-panel and log in, for this you need to enter in the input line:</p>
 <pre>
-      $ pip3 install -r requirements.txt
-</pre>
-<p>Move to /src/ directory, initialize data base and run server:</p>
-<pre>
-      $ cd src/
-      $ ./manage.py migrate
-      $ ./manage.py runserver
-</pre>
-<p>Open your browser in a new window and go to localhost, for this you need to enter in the input line:</p>
-<pre>
-      http://127.0.0.1:8000/
+      http://127.0.0.1:8000/admin
 </pre>
 <p><b>Add category and products images from MEDIA directory</b></p>
 <h2>Built with</h2>
@@ -42,4 +34,4 @@
   <li><a href="https://mdbootstrap.com/">MDBootstrap</a> - Material Design for Bootstrap</li>
 </ul>
 <h2>License</h2>
-<p>MIT &copy; <a href="https://github.com/alexshchegretsov">Alex Shchegretsov</a></p>
+<p>FREE &copy; <a href="https://github.com/alexshchegretsov">Alex Shchegretsov</a></p>

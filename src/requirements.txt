@@ -1,0 +1,7 @@
+
+Django==2.2.3
+django-extensions
+pillow
+psycopg2
+dj-database-url
+uwsgi

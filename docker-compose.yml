@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    container_name: app
+    environment:
+      DATABASE_URL: postgres://user:12345@db/user_db
+    ports:
+      - 8000:8000
+    command:  uwsgi --http 0.0.0.0:8000 --wsgi-file ENGINE/wsgi.py --master --processes 4
+    restart: always
+    volumes:
+      - static:/app/staticfiles
+      - ./src:/app
+    networks:
+      - my_ecommerce_network
+    depends_on:
+      - db
+  db:
+    image: postgres:11.4-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: user_db
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: always
+    volumes:
+      - pg_data:/var/lib/postgresql/data/pgdata
+    networks:
+      - my_ecommerce_network
+
+volumes:
+  static:
+  pg_data:
+
+networks:
+  my_ecommerce_network:
